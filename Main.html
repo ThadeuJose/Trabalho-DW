@@ -4,6 +4,7 @@
 <title> AA Airlines</title>
 </head>
 <body>
+
 <section id="dLogin">
 <form id="login">
 Login: <input type="text" id="Username" name="Username"/><br>
@@ -12,49 +13,54 @@ Senha: <input type="text" id="Password" name="Password"/><br>
 <button>Cancelar</button>
 </form>
 </section>
-
+<hr>
 <section>
+<a href="">Login</a>
+<a href="">Check In</a>
 <form>
 <div>
-De: <input type="text" id="De" name="De"/>
-Data: <input type="text" id="DataDe" name="DataDe"/>
+Origem: <input type="text" id="De" name="De"/>
+Data de ida: <input type="text" id="DataDe" name="DataDe"/>
 </div> 
 <div>
-Para: <input type="text" id="Para" name="Para"/>
-Data: <input type="text" id="DataPara" name="DataPara"/>
+Destino: <input type="text" id="Para" name="Para"/>
+Data de volta: <input type="text" id="DataPara" name="DataPara"/>
 </div>
 Adulto: <input type="text" id="Username" name="Username"/>
 Criança: <input type="text" id="Username" name="Username"/>
 Bebê: <input type="text" id="Username" name="Username"/><br>
 </form>
 </section>
-
+<hr>
 <section>
 <h1>Ida</h1>
 <div>
 Data: DD/MM/YYYY
 </div> 
+<div>
+<select>
+	<option value="volvo">Promoção</option>
+	<option value="saab">Normal</option>
+	<option value="audi">Economica</option>
+	<option value="mercedes">Primeira Classe</option>  
+</select> 
+</div>
 <table>
 <thead>
 <tr>
+<th></th>
 <th>Horario</th>
-<th>Promoção</th>
-<th>Normal</th>
-<th>Executivo</th>
-<th>Primeira Classe</th>
+<th>Preço</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<th><input type="checkbox"></th>
 <th>5:00 - 7:00</th>
 <th>70</th>
-<th>100</th>
-<th>120</th>
-<th>140</th>
 </tr>
 </tbody>
 </table>
-
 <h1>Volta</h1>
 <div>
 Data: DD/MM/YYYY
@@ -62,31 +68,78 @@ Data: DD/MM/YYYY
 <table>
 <thead>
 <tr>
+<th></th>
 <th>Horario</th>
-<th>Promoção</th>
-<th>Normal</th>
-<th>Executivo</th>
-<th>Primeira Classe</th>
+<th>Preço</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<th><input type="checkbox"></th>
 <th>5:00 - 7:00</th>
 <th>70</th>
-<th>100</th>
-<th>120</th>
-<th>140</th>
 </tr>
 </tbody>
 </table>
 </section>
-<br>
-<section>
-Executivo: $120<br>
-Taxa:      $ 70
 <hr>
-Total:     $190
-</section>
+<section>
+Ida:<br>
+De:XXX Para:YYY<br>
+5:00h $120<br>
+Taxa:      $ 70<br>
 
+Volta:<br>
+De:XXX Para:YYY<br>
+8:00h $120<br>
+Taxa:      $ 90<br>
+<hr>
+Total:     $SSS
+</section>
+<hr>
+<section>
+Escolha de assentos <br>
+<h1>Adulto 1</h1>
+Assento:
+<select>
+	<option value="volvo">A1</option>
+	<option value="saab">B2</option>
+	<option value="audi">W1</option>
+	<option value="mercedes">A7</option>  
+</select> 
+</section>
+<hr>
+<section>
+Informações 
+Nome:
+Sobrenome:
+Sexo:
+</section>
+<hr>
+<section>	
+Pagamento Cartão de Crédito<br> 
+Numero:<input type="text" id="Username" name="Username"/><br>
+Codigo de segurança:<input type="text" id="Username" name="Username"/><br>
+Data de Validade: <input type="text" id="Username" name="Username"/><br>
+<button>Comprar</button>
+</section>
+<hr>
+<section>
+Checkin 
+Bilhete: <input type="text" id="Username" name="Username"/><br> XXXXX
+</section>
+<hr>
+<section>
+Contato 
+Nome: <input type="text" id="Username" name="Username"/><br>
+Telefone: <input type="text" id="Username" name="Username"/><br>
+<button>Assentos</button><button>Confirmar</button>
+</section>
+<hr>
+<section>
+Cartão de Embarque<br>
+De:wwww Para:wwww<br>
+Nome:WWWW Assento:AAAA<br>
+</section>
 <body>
 </html>
