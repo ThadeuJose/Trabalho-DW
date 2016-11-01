@@ -67,7 +67,8 @@ create table assentos(
        idvoo char(4) not null,
        idpas char(4) not null,
        idcla char(4) not null,
-       primary key (idvoo, idass),
+       nmass varchar(5) not null,
+       primary key (idass),
        foreign key (idvoo) references voos(idvoo),
        foreign key (idpas) references passageiros(idpas),
        foreign key (idcla) references classesassento(idcla)
