@@ -16,3 +16,6 @@ Carregador de classe do banco de dados iniciado - derby.database.classpath=''
 Tue Nov 08 17:50:45 BRST 2016:
 Encerrando a instância a816c00e-0158-457d-ff79-ffffb5349638
 Tue Nov 08 17:50:46 BRST 2016 Thread[DRDAConnThread_3,5,main] (DATABASE = aadb), (DRDAID = {2}), Banco de dados 'aadb' fechado.
+----------------------------------------------------------------
+Tue Nov 08 18:20:23 BRST 2016: Shutting down Derby engine
+----------------------------------------------------------------
