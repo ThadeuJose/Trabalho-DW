@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2016 16:01:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Classes.Assentos" table="ASSENTOS" schema="ROOT" optimistic-lock="version">
+        <id name="idass" type="string">
+            <column name="IDASS" length="4" />
+            <generator class="assigned" />
+        </id>
+        <property name="idvoo" type="string">
+            <column name="IDVOO" length="4" not-null="true" />
+        </property>
+        <property name="idpas" type="string">
+            <column name="IDPAS" length="4" not-null="true" />
+        </property>
+        <property name="idcla" type="string">
+            <column name="IDCLA" length="4" not-null="true" />
+        </property>
+        <property name="nmass" type="string">
+            <column name="NMASS" length="5" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

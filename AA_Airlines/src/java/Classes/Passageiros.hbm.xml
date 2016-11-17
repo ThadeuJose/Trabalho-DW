@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2016 16:01:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Classes.Passageiros" table="PASSAGEIROS" schema="ROOT" optimistic-lock="version">
+        <id name="idpas" type="string">
+            <column name="IDPAS" length="4" />
+            <generator class="assigned" />
+        </id>
+        <property name="nmpas" type="string">
+            <column name="NMPAS" length="50" not-null="true" />
+        </property>
+        <property name="snpas" type="string">
+            <column name="SNPAS" length="50" not-null="true" />
+        </property>
+        <property name="idpaispas" type="string">
+            <column name="IDPAISPAS" length="3" not-null="true" />
+        </property>
+        <property name="telpas" type="string">
+            <column name="TELPAS" length="20" not-null="true" />
+        </property>
+        <property name="endpas" type="string">
+            <column name="ENDPAS" length="200" not-null="true" />
+        </property>
+        <property name="iddpas" type="int">
+            <column name="IDDPAS" not-null="true" />
+        </property>
+        <property name="cpfpas" type="string">
+            <column name="CPFPAS" length="11" />
+        </property>
+        <property name="pstpas" type="string">
+            <column name="PSTPAS" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

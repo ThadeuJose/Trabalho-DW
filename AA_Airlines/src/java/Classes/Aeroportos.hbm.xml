@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2016 16:01:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Classes.Aeroportos" table="AEROPORTOS" schema="ROOT" optimistic-lock="version">
+        <id name="idaer" type="string">
+            <column name="IDAER" length="4" />
+            <generator class="assigned" />
+        </id>
+        <property name="nmaer" type="string">
+            <column name="NMAER" length="50" not-null="true" />
+        </property>
+        <property name="txemb" type="double">
+            <column name="TXEMB" precision="52" scale="0" not-null="true" />
+        </property>
+        <property name="idcid" type="string">
+            <column name="IDCID" length="4" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

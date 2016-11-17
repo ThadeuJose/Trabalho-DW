@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2016 16:01:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Classes.Assentoscomprados" table="ASSENTOSCOMPRADOS" schema="ROOT" optimistic-lock="version">
+        <composite-id name="id" class="Classes.AssentoscompradosId">
+            <key-property name="idres" type="string">
+                <column name="IDRES" length="4" />
+            </key-property>
+            <key-property name="idass" type="string">
+                <column name="IDASS" length="4" />
+            </key-property>
+            <key-property name="idvoo" type="string">
+                <column name="IDVOO" length="4" />
+            </key-property>
+        </composite-id>
+        <property name="vrpag" type="double">
+            <column name="VRPAG" precision="52" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
