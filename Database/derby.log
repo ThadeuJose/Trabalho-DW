@@ -12,3 +12,5 @@ os.arch=amd64
 os.version=6.3
 derby.system.home=C:\Users\Thadeu Jose\Documents\GitHub\Trabalho-DW\Database
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Nov 08 19:07:09 BRST 2016: Shutting down Derby engine
