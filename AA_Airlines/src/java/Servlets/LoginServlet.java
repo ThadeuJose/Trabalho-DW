@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Classes.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -40,7 +41,9 @@ public class LoginServlet extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String senha = request.getParameter("senha");
         
-        if(checaUsuario(usuario, senha))
+        
+        
+        if(checaUsuario(usuario, senha, request))
         {
             RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
             logou = true;
@@ -57,7 +60,7 @@ public class LoginServlet extends HttpServlet {
         
     }
     
-    public boolean checaUsuario(String usuario, String senha){
+    public boolean checaUsuario(String usuario, String senha, HttpServletRequest request){
          boolean st =false;
          //creating connection with the database 
          Connection con;
@@ -68,7 +71,8 @@ public class LoginServlet extends HttpServlet {
          ps.setString(2, senha);
          ResultSet rs =ps.executeQuery();
          st = rs.next();
-            
+         Usuarios usuarioLogado = new Usuarios(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+         request.setAttribute("usuarioLogado", usuarioLogado);
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
