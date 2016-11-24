@@ -5,6 +5,7 @@
 
 --%>
 
+<%@page import="Classes.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,11 +14,16 @@
         <title> AA Airlines</title>
     </head>
     <body>
-        <%             
+        <%
+            Usuarios usuarioLogado;
             if (request.getAttribute("logou") == null){
                 request.setAttribute("logou", false); 
             }if(request.getAttribute("logou").equals(false)){
                 %> <a href="login.html">Login</a><%
+            }
+            if (request.getAttribute("usuarioLogado") != null){
+                usuarioLogado = (Usuarios) request.getAttribute("usuarioLogado");
+                %> Bem vindo(a), <%= usuarioLogado.getNmusu() %> <% 
             }
         %>
         <a href="">Check In</a>
@@ -30,9 +36,9 @@
                 Destino: <input type="text" id="Para" name="Para"/>
                 Data de volta: <input type="text" id="DataPara" name="DataPara"/>
             </div>
-            Adulto: <input type="text" id="Username" name="Username"/>
-            CrianÃ§a: <input type="text" id="Username" name="Username"/>
-            BebÃª: <input type="text" id="Username" name="Username"/><br>
+            Adulto: <input type="text" id="numAdultos" name="numAdultos"/>
+            Crianca: <input type="text" id="numCriancas" name="numCriancas"/>
+            Bebe: <input type="text" id="numBebes" name="numBebes"/><br>
             <button>Pesquisar</button><button>Reset</button>
         </form>
     </body>
