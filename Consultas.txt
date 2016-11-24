@@ -1,0 +1,13 @@
+pega todos os voos tendo como parametros datas de saida e chegada
+e cidades de origem e destino
+
+select *
+from voos v, aeroportos a, cidades c1, aeroportos b, cidades c2
+where v.idaerpar = a.IDAER
+and a.IDCID = c1.IDCID
+and c1.NMCID = 'cidade de saida'
+and v.IDAERCHE = b.IDAER
+and b.IDCID = c2.IDCID
+and c2.NMCID = 'cidade de destino'
+and v.DTPAR = 'data de saida'
+and v.DTCHE = 'data de chegada'
