@@ -11,3 +11,9 @@ and b.IDCID = c2.IDCID
 and c2.NMCID = 'cidade de destino'
 and v.DTPAR = 'data de saida'
 and v.DTCHE = 'data de chegada'
+
+pega o preco do assento da classe passada como parametro
+
+select pccla
+from classesassento
+where idcla = 'parametro de classe'
