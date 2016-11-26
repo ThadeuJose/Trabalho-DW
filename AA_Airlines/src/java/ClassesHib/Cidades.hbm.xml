@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2016 16:01:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="ClassesHib.Cidades" optimistic-lock="version" schema="ROOT" table="CIDADES">
+    <id name="idcid" type="string">
+      <column length="4" name="IDCID"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nmcid" type="string">
+      <column length="50" name="NMCID" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

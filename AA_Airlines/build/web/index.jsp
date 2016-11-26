@@ -5,7 +5,7 @@
 
 --%>
 
-<%@page import="Classes.Usuarios"%>
+<%@page import="ClassesHib.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@
             }
         %>
         <a href="">Check In</a>
-        <form>
+        <form action="BuscaServlet" method="post">
             <div>
                 Origem: <input type="text" id="De" name="De"/>
                 Data de ida: <input type="text" id="DataDe" name="DataDe"/>
@@ -39,7 +39,13 @@
             Adulto: <input type="text" id="numAdultos" name="numAdultos"/>
             Crianca: <input type="text" id="numCriancas" name="numCriancas"/>
             Bebe: <input type="text" id="numBebes" name="numBebes"/><br>
-            <button>Pesquisar</button><button>Reset</button>
+            <select id="Categoria" name="Categoria" >
+            <option value="1">Promoção</option>
+            <option value="2">Economica</option>
+            <option value="3">Primeira Classe</option>  
+            </select> 
+            <br>
+            <button>Pesquisar</button><button>Limpar</button>
         </form>
     </body>
 </html>

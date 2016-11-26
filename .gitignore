@@ -62,3 +62,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /AA_Airlines/nbproject/private/
+/AA_Airlines/dist/

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2016 16:01:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="ClassesHib.Classesassento" optimistic-lock="version" schema="ROOT" table="CLASSESASSENTO">
+    <id name="idcla" type="string">
+      <column length="4" name="IDCLA"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nmcla" type="string">
+      <column length="50" name="NMCLA" not-null="true"/>
+    </property>
+    <property name="pccla" type="double">
+      <column name="PCCLA" not-null="true" precision="52" scale="0"/>
+    </property>
+  </class>
+</hibernate-mapping>

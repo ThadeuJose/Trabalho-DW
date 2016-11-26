@@ -47,15 +47,15 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="Classes/Reservas.hbm.xml"/>
-    <mapping resource="Classes/Passageiros.hbm.xml"/>
-    <mapping resource="Classes/Classesassento.hbm.xml"/>
-    <mapping resource="Classes/Paises.hbm.xml"/>
-    <mapping resource="Classes/Aeroportos.hbm.xml"/>
-    <mapping resource="Classes/Voos.hbm.xml"/>
-    <mapping resource="Classes/Assentoscomprados.hbm.xml"/>
-    <mapping resource="Classes/Assentos.hbm.xml"/>
-    <mapping resource="Classes/Usuarios.hbm.xml"/>
-    <mapping resource="Classes/Cidades.hbm.xml"/>
+    <mapping resource="ClassesHib/Reservas.hbm.xml"/>
+    <mapping resource="ClassesHib/Passageiros.hbm.xml"/>
+    <mapping resource="ClassesHib/Classesassento.hbm.xml"/>
+    <mapping resource="ClassesHib/Paises.hbm.xml"/>
+    <mapping resource="ClassesHib/Aeroportos.hbm.xml"/>
+    <mapping resource="ClassesHib/Voos.hbm.xml"/>
+    <mapping resource="ClassesHib/Assentoscomprados.hbm.xml"/>
+    <mapping resource="ClassesHib/Assentos.hbm.xml"/>
+    <mapping resource="ClassesHib/Usuarios.hbm.xml"/>
+    <mapping resource="ClassesHib/Cidades.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
