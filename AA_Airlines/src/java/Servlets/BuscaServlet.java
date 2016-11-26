@@ -47,13 +47,25 @@ public class BuscaServlet extends HttpServlet {
         System.out.println(request.getParameter("De"));
         System.out.println(request.getParameter("DataDe"));
         System.out.println(request.getParameter("DataPara"));
+        
+        int numAdultos = 0;
+        int numCriancas = 0; 
+        int numBebes = 0;
+        
+        if(!request.getParameter("numAdultos").equals("")){
+            numAdultos = Integer.parseInt((String)request.getParameter("numAdultos"));
+        }
+        if(!request.getParameter("numCriancas").equals("")){
+            numCriancas = Integer.parseInt((String)request.getParameter("numCriancas"));
+        }
+        
         try {
             Connection con;
             PreparedStatement ps;
             ResultSet rs;
             
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
-            ps = con.prepareStatement("select v.HRPAR, v.HRCHE, ca.NMCLA, a.TXEMB + b.TXEMB + ca.PCCLA as preco, a.NMAER as aeroportoPartida, b.NMAER as aeroportoChegada\n" +
+            ps = con.prepareStatement("select v.HRPAR, v.HRCHE, ca.NMCLA, a.TXEMB + b.TXEMB + ca.PCCLA as preco, a.NMAER as aeroportoPartida, b.NMAER as aeroportoChegada, v.IDVOO\n" +
                                       "from voos v, aeroportos a, cidades c1, aeroportos b, cidades c2, classesassento ca\n" +
                                       "where v.idaerpar = a.IDAER \n" +
                                       "and a.IDCID = c1.IDCID \n" +
@@ -76,8 +88,8 @@ public class BuscaServlet extends HttpServlet {
             ArrayList<EscolhaVoo> listIda = new ArrayList<>();
             while(rs.next()){
                 float preco = Float.parseFloat(rs.getString("preco"));
-                float precoAdultos = Integer.parseInt(request.getParameter("numAdultos")) * preco;
-                float precoCriancas = Integer.parseInt(request.getParameter("numCriancas")) * preco * 0.5f;
+                float precoAdultos = numAdultos * preco;
+                float precoCriancas = numCriancas * preco * 0.5f;
                 float pt = precoAdultos + precoCriancas;
                 String precoTotal = ""+pt;
                 listIda.add(new EscolhaVoo(rs.getString("HRPAR"),rs.getString("HRCHE"), rs.getString("NMCLA"), precoTotal, rs.getString("aeroportoPartida"),rs.getString("aeroportoChegada")));
@@ -87,7 +99,7 @@ public class BuscaServlet extends HttpServlet {
             request.setAttribute("listIda", listIda);
             
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
-            ps = con.prepareStatement("select v.HRPAR, v.HRCHE, ca.NMCLA, a.TXEMB + b.TXEMB + ca.PCCLA as preco, a.NMAER as aeroportoPartida, b.NMAER as aeroportoChegada\n" +
+            ps = con.prepareStatement("select v.HRPAR, v.HRCHE, ca.NMCLA, a.TXEMB + b.TXEMB + ca.PCCLA as preco, a.NMAER as aeroportoPartida, b.NMAER as aeroportoChegada, v.IDVOO\n" +
                                       "from voos v, aeroportos a, cidades c1, aeroportos b, cidades c2, classesassento ca\n" +
                                       "where v.idaerpar = a.IDAER \n" +
                                       "and a.IDCID = c1.IDCID \n" +
@@ -96,7 +108,7 @@ public class BuscaServlet extends HttpServlet {
                                       "and b.IDCID = c2.IDCID \n" +
                                       "and c2.NMCID = ? \n" +
                                       "and v.DTPAR = ? \n" +
-                                      "and v.DTCHE = ? ");
+                                      "and v.DTCHE = ?");
 
             //Consulta de aeroporto B para aeroporto A
             //Voo de volta
@@ -111,8 +123,8 @@ public class BuscaServlet extends HttpServlet {
             ArrayList<EscolhaVoo> listVolta = new ArrayList<>();
             while(rs.next()){
                 float preco = Float.parseFloat(rs.getString("preco"));
-                float precoAdultos = Integer.parseInt(request.getParameter("numAdultos")) * preco;
-                float precoCriancas = Integer.parseInt(request.getParameter("numCriancas")) * preco * 0.5f;
+                float precoAdultos = numAdultos * preco;
+                float precoCriancas = numCriancas * preco * 0.5f;
                 float pt = precoAdultos + precoCriancas;
                 String precoTotal = ""+pt;
                 listVolta.add(new EscolhaVoo(rs.getString("HRPAR"),rs.getString("HRCHE"), rs.getString("NMCLA"), precoTotal, rs.getString("aeroportoPartida"),rs.getString("aeroportoChegada")));

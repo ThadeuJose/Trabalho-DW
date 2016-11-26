@@ -34,3 +34,13 @@ and b.IDCID = c2.IDCID
 and c2.NMCID = 'PARAMETRO' 
 and v.DTPAR = 'PARAMETRO' 
 and v.DTCHE = 'PARAMETRO' 
+
+
+Retorna o id e o nome dos assentos que nao estao ocupados
+para o voo PARAMETRO e a classe PARAMETRO
+
+select idass, nmass
+from assentos
+where idvoo = 'PARAMETRO'
+and idclass = 'PARAMETRO'
+and idpass is null;
