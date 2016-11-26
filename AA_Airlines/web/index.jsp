@@ -39,7 +39,7 @@
             Adulto: <input type="text" id="numAdultos" name="numAdultos"/>
             Crianca: <input type="text" id="numCriancas" name="numCriancas"/>
             Bebe: <input type="text" id="numBebes" name="numBebes"/><br>
-            <button>Pesquisar</button><button>Reset</button>
-        </form>
+            <button formaction="BuscaServlet">Pesquisar</button><button>Reset</button>
+        
     </body>
 </html>

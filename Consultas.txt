@@ -17,3 +17,20 @@ pega o preco do assento da classe passada como parametro
 select pccla
 from classesassento
 where idcla = 'parametro de classe'
+
+retorna a hora de partida do voo, hora de chegada,
+nome da classe do assento e preco da classe do assento
+e o nome dos aeroportos de saida e chegada
+Para voos entre a cidade c1 e a cidade c2
+saindo na data DTPAR e chegando em DTCHE
+
+select v.HRPAR, v.HRCHE, ca.NMCLA, a.TXEMB + b.TXEMB + ca.PCCLA as preco, a.NMAER as aeroportoPartida, b.NMAER as aeroportoChegada
+from voos v, aeroportos a, cidades c1, aeroportos b, cidades c2, classesassento ca
+where v.idaerpar = a.IDAER 
+and a.IDCID = c1.IDCID 
+and c1.NMCID = 'PARAMETRO'
+and v.IDAERCHE = b.IDAER 
+and b.IDCID = c2.IDCID 
+and c2.NMCID = 'PARAMETRO' 
+and v.DTPAR = 'PARAMETRO' 
+and v.DTCHE = 'PARAMETRO' 

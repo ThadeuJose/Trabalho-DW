@@ -52,6 +52,6 @@
                 <%}%>
             </select> 
             <br>    
-            <button>Proseguir</button>            
+            <input type="submit" name="Prosseguir" value="Prosseguir" formaction="PrecoTotal.jsp">            
     </body>
 </html>

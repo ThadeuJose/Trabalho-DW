@@ -43,48 +43,79 @@ public class BuscaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        System.out.println("Entrou no busca");
+        System.out.println(request.getParameter("De"));
+        System.out.println(request.getParameter("DataDe"));
+        System.out.println(request.getParameter("DataPara"));
         try {
             Connection con;
             PreparedStatement ps;
             ResultSet rs;
             
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
-            ps = con.prepareStatement("select * from voos v, aeroportos a, cidades c1, aeroportos b, cidades c2,classesassento "
-                    + "where v.idaerpar = a.IDAER and a.IDCID = c1.IDCID and c1.NMCID = ? and v.IDAERCHE = b.IDAER and b.IDCID = c2.IDCID "
-                    + "and c2.NMCID = ? and v.DTPAR = ? and v.DTCHE = ? and idcla = ?");//Consulta de aeroporto A para aeroporto B
-                             
+            ps = con.prepareStatement("select v.HRPAR, v.HRCHE, ca.NMCLA, a.TXEMB + b.TXEMB + ca.PCCLA as preco, a.NMAER as aeroportoPartida, b.NMAER as aeroportoChegada\n" +
+                                      "from voos v, aeroportos a, cidades c1, aeroportos b, cidades c2, classesassento ca\n" +
+                                      "where v.idaerpar = a.IDAER \n" +
+                                      "and a.IDCID = c1.IDCID \n" +
+                                      "and c1.NMCID = ?\n" +
+                                      "and v.IDAERCHE = b.IDAER \n" +
+                                      "and b.IDCID = c2.IDCID \n" +
+                                      "and c2.NMCID = ? \n" +
+                                      "and v.DTPAR = ? \n" +
+                                      "and v.DTCHE = ? ");
+            //Consulta de aeroporto A para aeroporto B
+            //Retorna, nessa ordem: hora de partida, hora de chegada, nome da classe, preco da classe                 
+            
             ps.setString(1,request.getParameter("De"));//cidade de saida
             ps.setString(2,request.getParameter("Para"));//cidade de destino
             ps.setString(3,request.getParameter("DataDe"));//data de saida
             ps.setString(4,request.getParameter("DataPara"));//data de chegada
-            ps.setString(5,request.getParameter("Categoria"));//Classe
             
             rs =ps.executeQuery();
                         
             ArrayList<EscolhaVoo> listIda = new ArrayList<>();
             while(rs.next()){
-                listIda.add(new EscolhaVoo(rs.getString("HRPAR"), rs.getString("HRCHE"), rs.getString("")));
+                float preco = Float.parseFloat(rs.getString("preco"));
+                float precoAdultos = Integer.parseInt(request.getParameter("numAdultos")) * preco;
+                float precoCriancas = Integer.parseInt(request.getParameter("numCriancas")) * preco * 0.5f;
+                float pt = precoAdultos + precoCriancas;
+                String precoTotal = ""+pt;
+                listIda.add(new EscolhaVoo(rs.getString("HRPAR"),rs.getString("HRCHE"), rs.getString("NMCLA"), precoTotal, rs.getString("aeroportoPartida"),rs.getString("aeroportoChegada")));
             }          
             
             request.setAttribute("DataIda", request.getParameter("DataDe"));
             request.setAttribute("listIda", listIda);
             
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
-            ps = con.prepareStatement("select * from voos v, aeroportos a, cidades c1, aeroportos b, cidades c2,classesassento "
-                    + "where v.idaerpar = a.IDAER and a.IDCID = c1.IDCID and c1.NMCID = ? and v.IDAERCHE = b.IDAER and b.IDCID = c2.IDCID "
-                    + "and c2.NMCID = ? and v.DTPAR = ? and v.DTCHE = ? and idcla = ?");//Consulta de aeroporto A para aeroporto B
-            
+            ps = con.prepareStatement("select v.HRPAR, v.HRCHE, ca.NMCLA, a.TXEMB + b.TXEMB + ca.PCCLA as preco, a.NMAER as aeroportoPartida, b.NMAER as aeroportoChegada\n" +
+                                      "from voos v, aeroportos a, cidades c1, aeroportos b, cidades c2, classesassento ca\n" +
+                                      "where v.idaerpar = a.IDAER \n" +
+                                      "and a.IDCID = c1.IDCID \n" +
+                                      "and c1.NMCID = ?\n" +
+                                      "and v.IDAERCHE = b.IDAER \n" +
+                                      "and b.IDCID = c2.IDCID \n" +
+                                      "and c2.NMCID = ? \n" +
+                                      "and v.DTPAR = ? \n" +
+                                      "and v.DTCHE = ? ");
+
+            //Consulta de aeroporto B para aeroporto A
+            //Voo de volta
+            //Retorna, nessa ordem: hora de partida, hora de chegada, nome da classe, preco da classe
             ps.setString(1,request.getParameter("Para"));//cidade de destino
             ps.setString(2,request.getParameter("De"));//cidade de saida            
             ps.setString(3,request.getParameter("DataPara"));//data de chegada
-            ps.setString(4,request.getParameter("DataDe"));//data de saida            
-            ps.setString(5,request.getParameter("Categoria"));//Classe
+            ps.setString(4,request.getParameter("DataDe"));//data de saida 
             
             rs =ps.executeQuery();
                         
             ArrayList<EscolhaVoo> listVolta = new ArrayList<>();
             while(rs.next()){
-                listVolta.add(new EscolhaVoo(rs.getString("HRPAR"), rs.getString("HRCHE"), rs.getString("")));
+                float preco = Float.parseFloat(rs.getString("preco"));
+                float precoAdultos = Integer.parseInt(request.getParameter("numAdultos")) * preco;
+                float precoCriancas = Integer.parseInt(request.getParameter("numCriancas")) * preco * 0.5f;
+                float pt = precoAdultos + precoCriancas;
+                String precoTotal = ""+pt;
+                listVolta.add(new EscolhaVoo(rs.getString("HRPAR"),rs.getString("HRCHE"), rs.getString("NMCLA"), precoTotal, rs.getString("aeroportoPartida"),rs.getString("aeroportoChegada")));
             }
             
             request.setAttribute("DataVolta", request.getParameter("DataDe"));

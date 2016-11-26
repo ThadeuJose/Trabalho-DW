@@ -11,17 +11,20 @@ package Classes;
  */
 public class EscolhaVoo {
     
-    private String horaPartida,horaChegada,preco;
+    public String horaPartida,horaChegada,nomeClasse, preco, aeroportoPartida, aeroportoChegada;
 
-    public EscolhaVoo(String horaPartida, String horaChegada, String preco) {
+    public EscolhaVoo(String horaPartida, String horaChegada, String nomeClasse, String preco, String aeroportoPartida, String aeroportoChegada) {
         this.horaPartida = horaPartida;
         this.horaChegada = horaChegada;
+        this.nomeClasse = nomeClasse;
         this.preco = preco;
+        this.aeroportoPartida = aeroportoPartida;
+        this.aeroportoChegada = aeroportoChegada;
     }
 
     @Override
     public String toString() {
-        return horaPartida+"-"+horaChegada+"|"+preco;
+        return aeroportoPartida+" "+horaPartida+"  ->  "+horaChegada+" "+aeroportoChegada+" ||| "+nomeClasse+" R$"+preco;
     }
     
     
