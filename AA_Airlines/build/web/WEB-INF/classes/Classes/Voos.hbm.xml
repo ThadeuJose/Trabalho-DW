@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2016 16:01:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Classes.Voos" table="VOOS" schema="ROOT" optimistic-lock="version">
+        <id name="idvoo" type="string">
+            <column name="IDVOO" length="4" />
+            <generator class="assigned" />
+        </id>
+        <property name="idaerpar" type="string">
+            <column name="IDAERPAR" length="4" not-null="true" />
+        </property>
+        <property name="idaerche" type="string">
+            <column name="IDAERCHE" length="4" not-null="true" />
+        </property>
+        <property name="hrpar" type="time">
+            <column name="HRPAR" length="8" not-null="true" />
+        </property>
+        <property name="dtpar" type="date">
+            <column name="DTPAR" length="10" not-null="true" />
+        </property>
+        <property name="hrche" type="time">
+            <column name="HRCHE" length="8" not-null="true" />
+        </property>
+        <property name="dtche" type="date">
+            <column name="DTCHE" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

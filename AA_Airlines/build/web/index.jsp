@@ -5,7 +5,7 @@
 
 --%>
 
-<%@page import="ClassesHib.Usuarios"%>
+<%@page import="Classes.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,8 +26,8 @@
                 %> Bem vindo(a), <%= usuarioLogado.getNmusu() %> <% 
             }
         %>
-        <a href="">Check In</a>
-        <form action="BuscaServlet" method="post">
+        <a href="checkin.html">Check In</a>
+        <form>
             <div>
                 Origem: <input type="text" id="De" name="De"/>
                 Data de ida: <input type="text" id="DataDe" name="DataDe"/>
@@ -39,13 +39,7 @@
             Adulto: <input type="text" id="numAdultos" name="numAdultos"/>
             Crianca: <input type="text" id="numCriancas" name="numCriancas"/>
             Bebe: <input type="text" id="numBebes" name="numBebes"/><br>
-            <select id="Categoria" name="Categoria" >
-            <option value="1">Promoção</option>
-            <option value="2">Economica</option>
-            <option value="3">Primeira Classe</option>  
-            </select> 
-            <br>
-            <button>Pesquisar</button><button>Limpar</button>
+            <button>Pesquisar</button><button>Reset</button>
         </form>
     </body>
 </html>
