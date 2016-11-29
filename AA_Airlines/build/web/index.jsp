@@ -5,7 +5,7 @@
 
 --%>
 
-<%@page import="Classes.Usuarios"%>
+<%@page import="ClassesHib.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,16 +29,21 @@
         <a href="checkin.html">Check In</a>
         <form>
             <div>
-                Origem: <input type="text" id="De" name="De"/>
-                Data de ida: <input type="text" id="DataDe" name="DataDe"/>
+                Origem: <input type="text" id="De" name="De"  value="Rio de Janeiro"/>
+                Data de ida: <input type="text" id="DataDe" name="DataDe" value="2016-12-12"/>
             </div> 
             <div>
-                Destino: <input type="text" id="Para" name="Para"/>
-                Data de volta: <input type="text" id="DataPara" name="DataPara"/>
+                Destino: <input type="text" id="Para" name="Para" value="Sao Paulo"/>
+                Data de volta: <input type="text" id="DataPara" name="DataPara" value="2016-12-12"/>
             </div>
-            Adulto: <input type="text" id="numAdultos" name="numAdultos"/>
-            Crianca: <input type="text" id="numCriancas" name="numCriancas"/>
-            Bebe: <input type="text" id="numBebes" name="numBebes"/><br>
+            Adulto: <input type="text" id="numAdultos" name="numAdultos" value="1"/>
+            Crianca: <input type="text" id="numCriancas" name="numCriancas" value="1"/>
+            Bebe: <input type="text" id="numBebes" name="numBebes" value="1"/><br>
+            <select id="classe" name="classe">
+                <option value="1">Promoção</option>
+                <option value="2">Economica</option>
+                <option value="3">Primeira Classe</option>  
+            </select>
             <button formaction="BuscaServlet">Pesquisar</button><button>Reset</button>
         
     </body>

@@ -11,9 +11,10 @@ package Classes;
  */
 public class EscolhaVoo {
     
-    public String horaPartida,horaChegada,nomeClasse, preco, aeroportoPartida, aeroportoChegada;
+    public String idVoo,horaPartida,horaChegada,nomeClasse, preco, aeroportoPartida, aeroportoChegada;
 
-    public EscolhaVoo(String horaPartida, String horaChegada, String nomeClasse, String preco, String aeroportoPartida, String aeroportoChegada) {
+    public EscolhaVoo(String idVoo, String horaPartida, String horaChegada, String nomeClasse, String preco, String aeroportoPartida, String aeroportoChegada) {
+        this.idVoo = idVoo;
         this.horaPartida = horaPartida;
         this.horaChegada = horaChegada;
         this.nomeClasse = nomeClasse;
@@ -22,9 +23,13 @@ public class EscolhaVoo {
         this.aeroportoChegada = aeroportoChegada;
     }
 
+    public String info() {
+        return idVoo+"/"+aeroportoPartida+"/"+horaPartida+"/"+horaChegada+"/"+aeroportoChegada+"/"+nomeClasse+"/"+preco;
+    }
+    
     @Override
     public String toString() {
-        return aeroportoPartida+" "+horaPartida+"  ->  "+horaChegada+" "+aeroportoChegada+" ||| "+nomeClasse+" R$"+preco;
+        return aeroportoPartida+" "+horaPartida+"  ->  "+horaChegada+" "+aeroportoChegada+" || R$"+preco;
     }
     
     

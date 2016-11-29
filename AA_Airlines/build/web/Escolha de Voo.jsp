@@ -27,31 +27,31 @@
                 %> Bem vindo(a), <%= usuarioLogado.getNmusu() %> <% 
             }
         %>
-        <form>
+        <form method="post">
             Ida<br>
             Data: <%= request.getAttribute("DataIda")%><br>
             Horario|Preços<br>
-            <select id="VooIda" name="VooIda">
+            <select id="vooIda" name="vooIda">
                 <%
                     ArrayList<EscolhaVoo> listIda=(ArrayList<EscolhaVoo>) request.getAttribute("listIda"); 
                     for (EscolhaVoo ev: listIda) {   
                 %>
-                <option value="<%=ev.toString()%>"><%=ev.toString()%></option>
+                <option value="<%=ev.info()%>"><%=ev.toString()%></option>
                 <%}%>
             </select> 
             <br>    
             Volta<br>
             Data: <%= request.getAttribute("DataVolta")%><br>
             Horario|Preços<br>
-            <select id="VooIda" name="VooIda">
+            <select id="vooVolta" name="vooVolta">
                 <%
                     ArrayList<EscolhaVoo> listVolta=(ArrayList<EscolhaVoo>) request.getAttribute("listVolta"); 
                     for (EscolhaVoo ev: listVolta) {   
                 %>
-                <option value="<%=ev.toString()%>"><%=ev.toString()%></option>
+                <option value="<%=ev.info()%>"><%=ev.toString()%></option>
                 <%}%>
             </select> 
             <br>    
-            <input type="submit" name="Prosseguir" value="Prosseguir" formaction="PrecoTotal.jsp">            
+            <input type="submit" name="Prosseguir" value="Prosseguir" formaction="PrecoTotal">            
     </body>
 </html>

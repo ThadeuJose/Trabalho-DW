@@ -9,9 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Preco Total</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form id="PrecoTotal" action="PrecoTotalServlet">
+            Ida:<br>
+            De:<%= request.getAttribute("cidadeIdaOri")%> Para: <%= request.getAttribute("cidadeIdaDest")%><br>
+            <%= request.getAttribute("horaIda")%> <%= request.getAttribute("precoIda")%><br>        
+            <br>
+            Volta:<br>
+            De:<%= request.getAttribute("cidadeVoltaOri")%> Para:<%= request.getAttribute("cidadeVoltaDest")%><br>
+            <%= request.getAttribute("horaVolta")%> <%= request.getAttribute("precoVolta")%><br>
+            <br>
+            Total:  <%= request.getAttribute("precoTotal")%>
+        </form>
     </body>
 </html>

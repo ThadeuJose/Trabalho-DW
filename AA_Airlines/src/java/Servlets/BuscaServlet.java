@@ -48,9 +48,13 @@ public class BuscaServlet extends HttpServlet {
         System.out.println(request.getParameter("DataDe"));
         System.out.println(request.getParameter("DataPara"));
         
+        this.getServletConfig().getServletContext().setAttribute("numAdultos", request.getParameter("numAdultos")); // add to application context
+        this.getServletConfig().getServletContext().setAttribute("numCriancas", request.getParameter("numCriancas")); // add to application context
+        this.getServletConfig().getServletContext().setAttribute("classe", request.getParameter("classe")); // add to application context
+        
+        
         int numAdultos = 0;
         int numCriancas = 0; 
-        int numBebes = 0;
         
         if(!request.getParameter("numAdultos").equals("")){
             numAdultos = Integer.parseInt((String)request.getParameter("numAdultos"));
@@ -74,7 +78,8 @@ public class BuscaServlet extends HttpServlet {
                                       "and b.IDCID = c2.IDCID \n" +
                                       "and c2.NMCID = ? \n" +
                                       "and v.DTPAR = ? \n" +
-                                      "and v.DTCHE = ? ");
+                                      "and v.DTCHE = ? " +
+                                      "and  ca.IDCLA= ? ");
             //Consulta de aeroporto A para aeroporto B
             //Retorna, nessa ordem: hora de partida, hora de chegada, nome da classe, preco da classe                 
             
@@ -82,6 +87,7 @@ public class BuscaServlet extends HttpServlet {
             ps.setString(2,request.getParameter("Para"));//cidade de destino
             ps.setString(3,request.getParameter("DataDe"));//data de saida
             ps.setString(4,request.getParameter("DataPara"));//data de chegada
+            ps.setString(5,request.getParameter("classe"));//Classe
             
             rs =ps.executeQuery();
                         
@@ -92,7 +98,7 @@ public class BuscaServlet extends HttpServlet {
                 float precoCriancas = numCriancas * preco * 0.5f;
                 float pt = precoAdultos + precoCriancas;
                 String precoTotal = ""+pt;
-                listIda.add(new EscolhaVoo(rs.getString("HRPAR"),rs.getString("HRCHE"), rs.getString("NMCLA"), precoTotal, rs.getString("aeroportoPartida"),rs.getString("aeroportoChegada")));
+                listIda.add(new EscolhaVoo(rs.getString("IDVOO"),rs.getString("HRPAR"),rs.getString("HRCHE"), rs.getString("NMCLA"), precoTotal, rs.getString("aeroportoPartida"),rs.getString("aeroportoChegada")));
             }          
             
             request.setAttribute("DataIda", request.getParameter("DataDe"));
@@ -108,15 +114,16 @@ public class BuscaServlet extends HttpServlet {
                                       "and b.IDCID = c2.IDCID \n" +
                                       "and c2.NMCID = ? \n" +
                                       "and v.DTPAR = ? \n" +
-                                      "and v.DTCHE = ?");
-
-            //Consulta de aeroporto B para aeroporto A
-            //Voo de volta
-            //Retorna, nessa ordem: hora de partida, hora de chegada, nome da classe, preco da classe
-            ps.setString(1,request.getParameter("Para"));//cidade de destino
-            ps.setString(2,request.getParameter("De"));//cidade de saida            
-            ps.setString(3,request.getParameter("DataPara"));//data de chegada
-            ps.setString(4,request.getParameter("DataDe"));//data de saida 
+                                      "and v.DTCHE = ?"+
+                                      "and  ca.IDCLA= ? ");
+            //Consulta de aeroporto A para aeroporto B
+            //Retorna, nessa ordem: hora de partida, hora de chegada, nome da classe, preco da classe                 
+            
+            ps.setString(1,request.getParameter("De"));//cidade de saida
+            ps.setString(2,request.getParameter("Para"));//cidade de destino
+            ps.setString(3,request.getParameter("DataDe"));//data de saida
+            ps.setString(4,request.getParameter("DataPara"));//data de chegada
+            ps.setString(5,request.getParameter("classe"));//Classe
             
             rs =ps.executeQuery();
                         
@@ -127,15 +134,15 @@ public class BuscaServlet extends HttpServlet {
                 float precoCriancas = numCriancas * preco * 0.5f;
                 float pt = precoAdultos + precoCriancas;
                 String precoTotal = ""+pt;
-                listVolta.add(new EscolhaVoo(rs.getString("HRPAR"),rs.getString("HRCHE"), rs.getString("NMCLA"), precoTotal, rs.getString("aeroportoPartida"),rs.getString("aeroportoChegada")));
+                listVolta.add(new EscolhaVoo(rs.getString("IDVOO"),rs.getString("HRPAR"),rs.getString("HRCHE"), rs.getString("NMCLA"), precoTotal, rs.getString("aeroportoPartida"),rs.getString("aeroportoChegada")));
             }
             
             request.setAttribute("DataVolta", request.getParameter("DataDe"));
             request.setAttribute("listVolta", listVolta);
             
-            
             RequestDispatcher view = request.getRequestDispatcher("Escolha de Voo.jsp");
             view.forward(request, response);
+            
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

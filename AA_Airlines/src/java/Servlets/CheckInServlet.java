@@ -5,8 +5,8 @@
  */
 package Servlets;
 
-import Classes.Reservas;
-import Classes.Usuarios;
+import ClassesHib.Reservas;
+import ClassesHib.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -40,9 +40,6 @@ public class CheckInServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         String bilhete = request.getParameter("bilhete");
-        
-        
-        
         
         if(checaBilhete(bilhete, request))
         {
