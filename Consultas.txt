@@ -107,3 +107,13 @@ and r.IDRES = a.IDRES
 and v.IDVOO = a.IDVOO
 and v.IDAERPAR = par.IDAER
 and v.IDAERCHE = che.IDAER
+
+
+------------insere o passageiro passando como parametros idpas, nome, sobrenome, cpf e passaporte
+insert into passageiros values ('idpas', 'nome','sobrenome', '1', '0', '0', 18, 'cpf', 'passaporte');
+
+------------recupera o maior id de passageiros
+select max(idpas) from passageiros
+
+------------coloca o passageiro de id = idpas no assento de voo idvoo e nome nmass
+update assentos set idpas = 'idpas' where idvoo = 'idvoo' and nmass = 'nmass';
