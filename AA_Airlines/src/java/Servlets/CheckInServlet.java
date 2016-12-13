@@ -84,7 +84,7 @@ public class CheckInServlet extends HttpServlet {
             recuperaAssentos(request);
             recuperaPreco(request);
             request.getSession().setAttribute("listaPassageiros", listaPas);
-            RequestDispatcher rs = request.getRequestDispatcher("Contato.jsp");
+            RequestDispatcher rs = request.getRequestDispatcher("MudaAssento.jsp");
             rs.forward(request, response); 
         }else{
             RequestDispatcher rs = request.getRequestDispatcher("checkin.html");
