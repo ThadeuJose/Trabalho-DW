@@ -23,10 +23,10 @@
             }
             if (request.getSession().getAttribute("usuarioLogado") != null){
                 usuarioLogado = (Usuarios) request.getSession().getAttribute("usuarioLogado");
-                %> Bem vindo(a), <%= usuarioLogado.getNmusu() %> <% 
+                %> Bem vindo(a), <%= usuarioLogado.getNmusu() %> <form method="get" id="voosUsu" action="VoosUsu"><input type="submit" value="Seus Voos"/></form><% 
             }
         %>
-        <a href="checkin.html">Check In</a><br>
+        <a href="checkin.html">Check In</a><br><br><br>
         <form>
             <div>
                 Origem: <input type="text" id="De" name="De"  value="Rio de Janeiro"/>
