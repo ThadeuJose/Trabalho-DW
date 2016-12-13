@@ -14,14 +14,20 @@
     <body>
         <form id="PrecoTotal" action="PrecoTotalServlet">
             Ida:<br>
-            De:<%= request.getAttribute("cidadeIdaOri")%> Para: <%= request.getAttribute("cidadeIdaDest")%><br>
-            <%= request.getAttribute("horaIda")%> <%= request.getAttribute("precoIda")%><br>        
+            De: <%= request.getAttribute("cidadeIdaOri")%><br>
+            Para: <%= request.getAttribute("cidadeIdaDest")%><br>
+            <%= request.getAttribute("horaIda")%><br>
+            R$<%= request.getAttribute("precoIda")%><br>        
+            <br>
             <br>
             Volta:<br>
-            De:<%= request.getAttribute("cidadeVoltaOri")%> Para:<%= request.getAttribute("cidadeVoltaDest")%><br>
-            <%= request.getAttribute("horaVolta")%> <%= request.getAttribute("precoVolta")%><br>
+            De: <%= request.getAttribute("cidadeVoltaOri")%><br> 
+            Para: <%= request.getAttribute("cidadeVoltaDest")%><br>
+            <%= request.getAttribute("horaVolta")%><br>
+            R$<%= request.getAttribute("precoVolta")%><br>
             <br>
-            Total:  <%= request.getAttribute("precoTotal")%>
+            <br>
+            Total:  R$<%= request.getAttribute("precoTotal")%>
         </form>
     </body>
 </html>

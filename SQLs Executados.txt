@@ -27,3 +27,21 @@ insert into classesassento values ('3', 'Primeira Classe', 200);
 26/11/2016, Paulo:
 
 insert into voos values ('5', '3', '1', '20:00:00', '2016-12-12', '22:00:00', '2016-12-12');
+
+
+12/12/2016, Paulo:
+
+alter table passageiros add column contato varchar(50);
+
+insert into reservas values('9999', '9999', '1');
+insert into passageiros values('99','Thadeu','Jose','1','123','123', 24, '111', '111', '');
+insert into passageiros values('100','Thadeu','Junior','1','123','123', 24, '112', '112', '');
+insert into assentos values('99', '1', '99', '1', 'B6');
+insert into assentos values('100', '1', '100', '1', 'B5');
+insert into assentoscomprados values('9999','99','1',200.0);
+insert into assentoscomprados values('9999','100','1', 100.0);
+
+insert into assentos values('101', '5', '99', '1', 'B6');
+insert into assentos values('102', '5', '100', '1', 'B5');
+insert into assentoscomprados values('9999','101','5',75.0);
+insert into assentoscomprados values('9999','102','5', 25.0);

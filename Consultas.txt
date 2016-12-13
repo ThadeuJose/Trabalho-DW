@@ -44,3 +44,66 @@ from assentos
 where idvoo = 'PARAMETRO'
 and idclass = 'PARAMETRO'
 and idpass is null;
+
+PARA O CARTAO DE EMBARQUE:
+
+--Consultas para recuperar id dos voos de ida e volta e o nome e sobrenome de cada passageiro
+
+select distinct p.NMPAS, p.SNPAS
+from assentoscomprados a, assentos s, passageiros p, usuarios u, reservas r
+where a.IDRES = r.IDRES
+and a.IDASS = s.IDASS
+and p.IDPAS = s.IDPAS
+and r.CDCHK = '9999'
+
+select distinct a.IDVOO
+from assentoscomprados a, assentos s, passageiros p, usuarios u, reservas r
+where a.IDRES = r.IDRES
+and a.IDASS = s.IDASS
+and p.IDPAS = s.IDPAS
+and r.CDCHK = '9999'
+
+--Pegando infos voo:
+select distinct v.IDVOO, v.IDAERPAR, par.NMAER, v.IDAERCHE, che.NMAER, v.DTPAR, v.DTCHE, v.HRPAR, v.HRCHE
+from reservas r, assentoscomprados a, voos v, aeroportos par, aeroportos che
+where r.CDCHK = '9999'
+and r.IDRES = a.IDRES
+and a.IDVOO = v.IDVOO
+and v.IDAERPAR = par.IDAER
+and v.IDAERCHE = che.IDAER
+
+--Pegando Infos dos passageiros
+select p.NMPAS, p.SNPAS, p.CPFPAS, p.PSTPAS, p.TELPAS, p.ENDPAS, s.NMASS, s.IDVOO
+from assentoscomprados a, assentos s, passageiros p, usuarios u, reservas r
+where a.IDRES = r.IDRES
+and a.IDASS = s.IDASS
+and p.IDPAS = s.IDPAS
+and r.CDCHK = '9999'
+and s.IDVOO = '1' -- id voo ida
+
+select p.NMPAS, p.SNPAS, p.CPFPAS, p.PSTPAS, p.TELPAS, p.ENDPAS, s.NMASS, s.IDVOO
+from assentoscomprados a, assentos s, passageiros p, usuarios u, reservas r
+where a.IDRES = r.IDRES
+and a.IDASS = s.IDASS
+and p.IDPAS = s.IDPAS
+and r.CDCHK = '9999'
+and s.IDVOO = '5' -- id voo volta
+
+--Pegando precos
+select sum(a.VRPAG) as precoPerna
+from reservas r, assentoscomprados a, voos v, aeroportos par, aeroportos che
+where r.CDCHK = '9999'
+and r.IDRES = a.IDRES
+and v.IDVOO = a.IDVOO
+and v.IDAERPAR = par.IDAER
+and v.IDAERCHE = che.IDAER
+group by v.IDVOO
+
+--taxas 
+select distinct v.IDVOO, par.TXEMB + che.TXEMB as taxas
+from reservas r, assentoscomprados a, voos v, aeroportos par, aeroportos che
+where r.CDCHK = '9999'
+and r.IDRES = a.IDRES
+and v.IDVOO = a.IDVOO
+and v.IDAERPAR = par.IDAER
+and v.IDAERCHE = che.IDAER

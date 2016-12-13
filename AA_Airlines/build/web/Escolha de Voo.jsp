@@ -17,16 +17,16 @@
     <body>
         <%
             Usuarios usuarioLogado;
-            if (request.getAttribute("logou") == null){
-                request.setAttribute("logou", false); 
-            }if(request.getAttribute("logou").equals(false)){
+            if (request.getSession().getAttribute("logou") == null){
+                request.getSession().setAttribute("logou", false); 
+            }if(request.getSession().getAttribute("logou").equals(false)){
                 %> <a href="login.html">Login</a><%
             }
-            if (request.getAttribute("usuarioLogado") != null){
-                usuarioLogado = (Usuarios) request.getAttribute("usuarioLogado");
+            if (request.getSession().getAttribute("usuarioLogado") != null){
+                usuarioLogado = (Usuarios) request.getSession().getAttribute("usuarioLogado");
                 %> Bem vindo(a), <%= usuarioLogado.getNmusu() %> <% 
             }
-        %>
+        %><br><br>
         <form method="post">
             Ida<br>
             Data: <%= request.getAttribute("DataIda")%><br>
@@ -52,6 +52,6 @@
                 <%}%>
             </select> 
             <br>    
-            <input type="submit" name="Prosseguir" value="Prosseguir" formaction="PrecoTotal">            
+            <input type="submit" name="Prosseguir" value="Prosseguir" formaction="PrecoTotal" >            
     </body>
 </html>

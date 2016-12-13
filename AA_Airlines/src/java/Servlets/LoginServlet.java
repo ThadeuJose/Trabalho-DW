@@ -47,14 +47,14 @@ public class LoginServlet extends HttpServlet {
         {
             RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
             logou = true;
-            request.setAttribute("logou", logou);            
+            request.getSession().setAttribute("logou", logou);            
             rs.forward(request, response);
         }
         else
         {
            out.println("Usuario ou senha incorretos.");
            RequestDispatcher rs = request.getRequestDispatcher("login.html");
-           request.setAttribute("logou", logou);
+           request.getSession().setAttribute("logou", logou);
            rs.include(request, response);
         }
         
@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
          ResultSet rs =ps.executeQuery();
          st = rs.next();
          Usuarios usuarioLogado = new Usuarios(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
-         request.setAttribute("usuarioLogado", usuarioLogado);
+         request.getSession().setAttribute("usuarioLogado", usuarioLogado);
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

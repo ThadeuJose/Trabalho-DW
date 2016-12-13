@@ -16,17 +16,17 @@
     <body>
         <%
             Usuarios usuarioLogado;
-            if (request.getAttribute("logou") == null){
-                request.setAttribute("logou", false); 
-            }if(request.getAttribute("logou").equals(false)){
+            if (request.getSession().getAttribute("logou") == null){
+                request.getSession().setAttribute("logou", false); 
+            }if(request.getSession().getAttribute("logou").equals(false)){
                 %> <a href="login.html">Login</a><%
             }
-            if (request.getAttribute("usuarioLogado") != null){
-                usuarioLogado = (Usuarios) request.getAttribute("usuarioLogado");
+            if (request.getSession().getAttribute("usuarioLogado") != null){
+                usuarioLogado = (Usuarios) request.getSession().getAttribute("usuarioLogado");
                 %> Bem vindo(a), <%= usuarioLogado.getNmusu() %> <% 
             }
         %>
-        <a href="checkin.html">Check In</a>
+        <a href="checkin.html">Check In</a><br>
         <form>
             <div>
                 Origem: <input type="text" id="De" name="De"  value="Rio de Janeiro"/>
