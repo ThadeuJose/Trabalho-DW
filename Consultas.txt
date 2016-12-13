@@ -117,3 +117,10 @@ select max(idpas) from passageiros
 
 ------------coloca o passageiro de id = idpas no assento de voo idvoo e nome nmass
 update assentos set idpas = 'idpas' where idvoo = 'idvoo' and nmass = 'nmass';
+
+
+------------insere na tabela reservas com os valores idres e idusu ( O ID DA RESREVA EH IGUAL AO CODIGO DO CHECKIN  )
+insert into reservas values (idres, idres, idusu)
+
+------------recupera o maior codigo de reserva do banco
+select max(idres) from reservas
