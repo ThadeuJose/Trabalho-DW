@@ -14,29 +14,36 @@
     </head>
     <body>
         <h0>Mudança de Assentos</h0><br>
-            <%
+        <%
             ArrayList<Passageiros> listaPas = (ArrayList<Passageiros>) request.getSession().getAttribute("listaPassageiros");
             ArrayList<String> assentosIda = (ArrayList<String>) request.getSession().getAttribute("assentosIda");
             ArrayList<String> assentosVolta = (ArrayList<String>) request.getSession().getAttribute("assentosVolta");
-        
-            %><form method="get" id="modAssento" action="MudaAssento"><%
-                %>Voo de Ida:<br> 
-                    Numero do Voo: <%= request.getSession().getAttribute("vooIdaCheckin") %><br> 
-                    <%= request.getSession().getAttribute("aerosIdaCheck") %><br> 
-                    <%= request.getSession().getAttribute("dataIdaCheck") %><br> 
-                    <%= request.getSession().getAttribute("horaIdaCheck") %><br>
-                    <br> 
-                <%
-                for (int i = 0; i < listaPas.size(); i++) {
-                    %> Passageiro: <%=listaPas.get(i).getNmpas()%> <%=listaPas.get(i).getSnpas()%><br><%
-                    %> Assento na Ida:      <%=assentosIda.get(i)  %><br><%                    
-                }
-                %><br><%
-                %>Voo de Volta:<br>
-                    Numero do Voo: <%= request.getSession().getAttribute("vooVoltaCheckin") %><br> 
-                    <%= request.getSession().getAttribute("aerosVoltaCheck") %><br> 
-                    <%= request.getSession().getAttribute("dataVoltaCheck") %><br> 
-                    <%= request.getSession().getAttribute("horaVoltaCheck") %><br>
+            ArrayList<Integer> listAss = (ArrayList<Integer>) request.getSession().getAttribute("listAss");
+        %>
+        <form method="get" id="modAssento" action="MudaAssento">
+            Voo de Ida:<br> 
+            Numero do Voo: <%= request.getSession().getAttribute("vooIdaCheckin") %><br> 
+            <%= request.getSession().getAttribute("aerosIdaCheck") %><br> 
+            <%= request.getSession().getAttribute("dataIdaCheck") %><br> 
+            <%= request.getSession().getAttribute("horaIdaCheck") %><br>
+            <br> 
+                <%for (int i = 0; i < listaPas.size(); i++) {%> 
+                    Passageiro: <%=listaPas.get(i).getNmpas()%> <%=listaPas.get(i).getSnpas()%><br>
+                    Assento na Ida:<%=assentosIda.get(i)%><br>
+                    <select id = "modAssIda" name ="modAssIda"> 
+                    <%for (int idx = 0; idx < listAss.size(); idx++){%>
+                    <option value="<%= listAss.get(idx) %>"><%= listAss.get(idx) %> </option>
+                    <%}%>
+                    </select> 
+                <%}%>
+                
+                
+                <br>
+                Voo de Volta:<br>
+                Numero do Voo: <%= request.getSession().getAttribute("vooVoltaCheckin") %><br> 
+                <%= request.getSession().getAttribute("aerosVoltaCheck") %><br> 
+                <%= request.getSession().getAttribute("dataVoltaCheck") %><br> 
+                <%= request.getSession().getAttribute("horaVoltaCheck") %><br>
                     <br> 
                 <%
                 for (int i = 0; i < listaPas.size(); i++) {
@@ -49,10 +56,5 @@
             <%
             %></form><%
         %>
-        
-        
-            
-        
-        
     </body>
 </html>
