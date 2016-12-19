@@ -65,7 +65,7 @@ create table voos(
 create table assentos(
        idass char(4) not null,
        idvoo char(4) not null,
-       idpas char(4) not null,
+       idpas char(4),
        idcla char(4) not null,
        nmass varchar(5) not null,
        primary key (idass),
