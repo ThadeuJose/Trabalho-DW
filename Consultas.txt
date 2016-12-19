@@ -124,3 +124,32 @@ insert into reservas values (idres, idres, idusu)
 
 ------------recupera o maior codigo de reserva do banco
 select max(idres) from reservas
+
+
+------------insere um assento sem passageiro na tabela passageiros
+inser into assentos values ('id do assento','id do voo','id do passageiro(opcional) deixar '' para null','id da classe','nome do assento')
+
+
+------------insere uma nova reserva, tendo os assentos que foram comprados, o id do usuario que esta comprando e o id do voo
+
+insert into reservas values ('id da reserva','codigo do checkin (igual ao id da reserva)','id do usuario')
+
+--para cada assento comprado pelo usuario:
+
+insert into assentoscomprados values ('id da reserva (igual ao de cima)', 'id do assento comprado', 'id do voo', valor pago na passagem) --valor pago eh um numero, nao precisa de ''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
