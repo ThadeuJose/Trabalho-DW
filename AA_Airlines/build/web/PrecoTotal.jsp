@@ -27,7 +27,8 @@
             R$<%= request.getAttribute("precoVolta")%><br>
             <br>
             <br>
-            Total:  R$<%= request.getAttribute("precoTotal")%>
+            Total:  R$<%= request.getAttribute("precoTotal")%><br>
+            <button formaction="EscAssentoServlet">Prosseguir</button>
         </form>
     </body>
 </html>
