@@ -52,7 +52,7 @@ public class Contato extends HttpServlet {
  
         gravaNoBanco();
         request.getSession().setAttribute("listaPassageiros", listaPas);
-        RequestDispatcher rs = request.getRequestDispatcher("CartaoEmbarque.jsp");
+        RequestDispatcher rs = request.getRequestDispatcher("MudaAssento.jsp");
         rs.forward(request, response);        
     }
 
@@ -110,5 +110,5 @@ public class Contato extends HttpServlet {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-    
+        
 }
