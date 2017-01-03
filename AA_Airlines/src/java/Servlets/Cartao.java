@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import ClassesHib.Usuarios;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -54,9 +55,11 @@ public class Cartao extends HttpServlet {
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
             ps = con.prepareStatement("insert into reservas values (?,?,?)");
 
+            Usuarios usu = (Usuarios) request.getSession().getAttribute("usuarioLogado");
+            
             ps.setString(1,Integer.toString(idreserva));
             ps.setString(2,Integer.toString(idreserva));
-//            ps.setString(3,idusuario);
+            ps.setString(3,usu.getIdusu());
 
             ps.executeUpdate();
             

@@ -119,10 +119,10 @@ public class BuscaServlet extends HttpServlet {
             //Consulta de aeroporto A para aeroporto B
             //Retorna, nessa ordem: hora de partida, hora de chegada, nome da classe, preco da classe                 
             
-            ps.setString(1,request.getParameter("De"));//cidade de saida
-            ps.setString(2,request.getParameter("Para"));//cidade de destino
-            ps.setString(3,request.getParameter("DataDe"));//data de saida
-            ps.setString(4,request.getParameter("DataPara"));//data de chegada
+            ps.setString(1,request.getParameter("Para"));//cidade de saida
+            ps.setString(2,request.getParameter("De"));//cidade de destino
+            ps.setString(3,request.getParameter("DataPara"));//data de saida
+            ps.setString(4,request.getParameter("DataDe"));//data de chegada
             ps.setString(5,request.getParameter("classe"));//Classe
             
             rs =ps.executeQuery();
