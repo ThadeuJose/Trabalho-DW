@@ -46,6 +46,8 @@
         
         %>
         <br> 
-        <input type="submit" value="Voltar" formaction="index.jsp"/>
+        <form method="get" id="formCartaoEmbarque" action="index.jsp">
+            <input type="submit" value="Voltar"/>
+        </form>
     </body>
 </html>
