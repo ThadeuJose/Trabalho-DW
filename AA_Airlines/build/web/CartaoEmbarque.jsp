@@ -46,6 +46,5 @@
         
         %>
         <br> 
-        <input type="submit" value="Voltar" formaction="index.jsp"/>
     </body>
 </html>

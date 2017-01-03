@@ -37,8 +37,6 @@ public class CheckInServlet extends HttpServlet {
     private ArrayList<Passageiros> listaPas;
     private ArrayList<String> assentosIda;
     private ArrayList<String> assentosVolta;
-    private ArrayList<String> naoOcupadosIda;
-    private ArrayList<String> naoOcupadosVolta;
     private String vooIdaCheckin;   
     private String vooVoltaCheckin;
     private String codCheckIn;
@@ -46,7 +44,6 @@ public class CheckInServlet extends HttpServlet {
     private Double precoVolta;
     private Double taxaIda;
     private Double taxaVolta;
-    private String idclasse;
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,10 +51,7 @@ public class CheckInServlet extends HttpServlet {
         listaPas = new ArrayList<Passageiros>();
         assentosIda = new ArrayList<String>();
         assentosVolta = new ArrayList<String>();
-        naoOcupadosIda = new ArrayList<String>();
-        naoOcupadosVolta = new ArrayList<String>();
         
-        idclasse = "";
         vooIdaCheckin = "";
         vooVoltaCheckin = "";
         request.getSession().setAttribute("listaPassageiros", null);
@@ -75,25 +69,22 @@ public class CheckInServlet extends HttpServlet {
         request.getSession().setAttribute("precoVolta", null);
         request.getSession().setAttribute("taxaIda", null);
         request.getSession().setAttribute("taxaVolta", null);
-        request.getSession().setAttribute("naoOcupadosIda", null);
-        request.getSession().setAttribute("naoOcupadosVolta", null);
-        request.getSession().setAttribute("classeCheckIn", null);        
-        codCheckIn = request.getParameter("bilhete");        
+        
+        
+        codCheckIn = request.getParameter("bilhete");
         
         //testes
         System.out.println(codCheckIn);
         
         if(checaBilhete(codCheckIn)){
             System.out.println("achou o codigo");
-            request.getSession().setAttribute("codCheckIn", codCheckIn);
             request.getSession().setAttribute("vooIdaCheckin", vooIdaCheckin);
             request.getSession().setAttribute("vooVoltaCheckin", vooVoltaCheckin);            
             recuperaInfosVoo(request);
             recuperaAssentos(request);
             recuperaPreco(request);
-            recuperaNaoOcupados(request);
             request.getSession().setAttribute("listaPassageiros", listaPas);
-            RequestDispatcher rs = request.getRequestDispatcher("Contato.jsp");
+            RequestDispatcher rs = request.getRequestDispatcher("MudaAssento.jsp");
             rs.forward(request, response); 
         }else{
             RequestDispatcher rs = request.getRequestDispatcher("checkin.html");
@@ -131,7 +122,7 @@ public class CheckInServlet extends HttpServlet {
                                          "where a.IDRES = r.IDRES\n" +
                                          "and a.IDASS = s.IDASS\n" +
                                          "and p.IDPAS = s.IDPAS\n" +
-                                         "and r.CDCHK = ? order by p.IDPAS");
+                                         "and r.CDCHK = ?");
                 ps2.setString(1, bilhete);
          
                 ResultSet rs2 = ps2.executeQuery();
@@ -214,7 +205,7 @@ public class CheckInServlet extends HttpServlet {
                                                             "and a.IDASS = s.IDASS\n" +
                                                             "and p.IDPAS = s.IDPAS\n" +
                                                             "and r.CDCHK = ?\n" +
-                                                            "and s.IDVOO = ? order by p.IDPAS");
+                                                            "and s.IDVOO = ?");
                 ps.setString(1, codCheckIn);
                 ps.setString(2, vooIdaCheckin);
                 ResultSet rs = ps.executeQuery();
@@ -228,7 +219,7 @@ public class CheckInServlet extends HttpServlet {
                                                             "and a.IDASS = s.IDASS\n" +
                                                             "and p.IDPAS = s.IDPAS\n" +
                                                             "and r.CDCHK = ?\n" +
-                                                            "and s.IDVOO = ? order by p.IDPAS");
+                                                            "and s.IDVOO = ?");
                 ps2.setString(1, codCheckIn);
                 ps2.setString(2, vooVoltaCheckin);
                 ResultSet rs2 = ps2.executeQuery();
@@ -290,58 +281,6 @@ public class CheckInServlet extends HttpServlet {
             } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }
-    
-    public void recuperaNaoOcupados(HttpServletRequest request){
-        
-        try {
-            Connection con;
-            PreparedStatement ps;
-            ResultSet rs;      
-                con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
-            
-            String nmass = assentosIda.get(0);            
-            //pegar a classe
-            ps = con.prepareStatement("select c.idcla\n" +
-                                      "from classesassento c, assentos a\n" +
-                                      "where c.idcla = a.idcla\n" +
-                                      "and a.idvoo = ?\n" +
-                                      "and a.nmass = ?");
-                        
-            ps.setString(1,vooIdaCheckin);
-            ps.setString(2,nmass);
-            rs =ps.executeQuery();
-            while(rs.next()){
-                idclasse = rs.getString("idcla");
-            }
-            
-            ps = con.prepareStatement("select idass, nmass from assentos where idvoo = ? and idcla = ? and idpas = ''");
-            ps.setString(1,vooIdaCheckin);
-            ps.setString(2,idclasse);
-            rs =ps.executeQuery();
-            while(rs.next()){
-                naoOcupadosIda.add(rs.getString("nmass"));
-            }         
-            
-            ps = con.prepareStatement("select idass, nmass from assentos where idvoo = ? and idcla = ? and idpas = ''");
-            ps.setString(1,vooVoltaCheckin);
-            ps.setString(2,idclasse);
-            rs =ps.executeQuery();
-            while(rs.next()){
-                naoOcupadosVolta.add(rs.getString("nmass"));
-            }       
-            
-            request.getSession().setAttribute("classeCheckIn", idclasse);
-            request.getSession().setAttribute("naoOcupadosIda", naoOcupadosIda);
-            request.getSession().setAttribute("naoOcupadosVolta", naoOcupadosVolta);
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
         
     }
 
