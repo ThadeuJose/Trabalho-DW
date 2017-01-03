@@ -36,7 +36,9 @@ public class PrecoTotal extends HttpServlet {
         
         String vooIda = request.getParameter("vooIda");
         String[] listVooIda = vooIda.split("/");
-               
+    
+        this.getServletConfig().getServletContext().setAttribute("idVooIda",Float.parseFloat(listVooIda[0])); // add to application context
+            
         request.setAttribute("cidadeIdaOri",listVooIda[1]);
         request.setAttribute("cidadeIdaDest",listVooIda[4]);
         request.setAttribute("horaIda",listVooIda[2]+" - "+listVooIda[3]);
@@ -45,13 +47,17 @@ public class PrecoTotal extends HttpServlet {
         String vooVolta = request.getParameter("vooVolta");
         String[] listVooVolta = vooVolta.split("/");
         
+        this.getServletConfig().getServletContext().setAttribute("idVooVolta",Float.parseFloat(listVooVolta[0])); // add to application context
+        
         request.setAttribute("cidadeVoltaOri",listVooVolta[1]);
         request.setAttribute("cidadeVoltaDest",listVooVolta[4]);
         request.setAttribute("horaVolta",listVooVolta[2]+" - "+listVooVolta[3]);
         request.setAttribute("precoVolta",listVooVolta[6]);
         
         request.setAttribute("precoTotal",Float.parseFloat(listVooIda[6])+Float.parseFloat(listVooVolta[6]));
-            
+        
+        this.getServletConfig().getServletContext().setAttribute("precoTotal",Float.parseFloat(listVooIda[6])+Float.parseFloat(listVooVolta[6])); // add to application context
+        
         RequestDispatcher view = request.getRequestDispatcher("PrecoTotal.jsp");
         view.forward(request, response);
     }
