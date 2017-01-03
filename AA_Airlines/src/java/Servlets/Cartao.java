@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Thadeu Jose
  */
 @WebServlet(name = "Pagamento", urlPatterns = {"/Pagamento"})
-public class Pagamento extends HttpServlet {
+public class Cartao extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,6 +46,7 @@ public class Pagamento extends HttpServlet {
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
             ps = con.prepareStatement("select max(idres) as idReservas from reservas");
             rs =ps.executeQuery();
+            rs.next();
             
             int idreserva = rs.getInt("idReservas");
             
@@ -53,25 +54,55 @@ public class Pagamento extends HttpServlet {
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
             ps = con.prepareStatement("insert into reservas values (?,?,?)");
 
-//            ps.setString(1,idreserva);
-//            ps.setString(2,idreserva);
+            ps.setString(1,Integer.toString(idreserva));
+            ps.setString(2,Integer.toString(idreserva));
 //            ps.setString(3,idusuario);
 
-            rs =ps.executeQuery();
+            ps.executeUpdate();
             
-            //insert into assentoscomprados values ('id da reserva (igual ao de cima)', 'id do assento comprado', 'id do voo', valor pago na passagem)
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
-            ps = con.prepareStatement("insert into assentoscomprados values (?,?,?,?)");
             
-//            ps.setString(1,idreserva);
-//            ps.setString(2,idassento); 
-//            ps.setString(3,idvoo); Tenho 
-//            ps.setString(4,valor); Tenho 
+            int numAdultos = Integer.parseInt((String)this.getServletConfig().getServletContext().getAttribute("numAdultos"));
+            int numCriancas = Integer.parseInt((String)this.getServletConfig().getServletContext().getAttribute("numCriancas"));
+            String idVooIda  = (String)this.getServletConfig().getServletContext().getAttribute("idVooIda");        
+            String idVooVolta  = (String)this.getServletConfig().getServletContext().getAttribute("idVooVolta");
+            String valor = (String)this.getServletConfig().getServletContext().getAttribute("precoTotal");
+            
+            for (int i = 0; i < numAdultos+numCriancas; i++) {
+                //insert into assentoscomprados values ('id da reserva (igual ao de cima)', 'id do assento comprado', 'id do voo', valor pago na passagem)
+                con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
+                ps = con.prepareStatement("insert into assentoscomprados values (?,?,?,?)");
+              
+                System.out.println(request.getParameter("assento"+i));
 
-            rs =ps.executeQuery();
+                ps.setString(1,Integer.toString(idreserva));
+                ps.setString(2,request.getParameter("assento"+i)); 
+                ps.setString(3,idVooIda); 
+                ps.setString(4,valor); 
+
+                ps.executeUpdate();
+
+                //insert into assentoscomprados values ('id da reserva (igual ao de cima)', 'id do assento comprado', 'id do voo', valor pago na passagem)
+                con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
+                ps = con.prepareStatement("insert into assentoscomprados values (?,?,?,?)");
+
+                ps.setString(1,Integer.toString(idreserva));
+                ps.setString(2,request.getParameter("assento"+i)); 
+                ps.setString(3,idVooVolta); 
+                ps.setString(4,valor);  
+
+                ps.executeUpdate();
+                
+            }
             
-//            request.setAttribute("listAss", listAss);
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
+            ps = con.prepareStatement("select max(idres) as idReservas from reservas");
+            rs =ps.executeQuery();
+            rs.next();
+            
+            //Retornar o novo idreserva
+            request.setAttribute("codRes",rs.getInt("idReservas") );
                         
+            
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

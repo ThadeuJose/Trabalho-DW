@@ -65,21 +65,13 @@ public class EscAssentoServlet extends HttpServlet {
                 listAss.add(Integer.parseInt(rs.getString("nmass")));
             }            
             request.setAttribute("listAss", listAss);
+            
+            request.setAttribute("totalAss",numAdultos+numCriancas);
+            
+            
+            RequestDispatcher view = request.getRequestDispatcher("Escolha de Assento.jsp");
+            view.forward(request, response);
 
-            if(numAdultos>0){
-                request.setAttribute("tipo", "Adulto "+numAdultos);                
-                this.getServletConfig().getServletContext().setAttribute("numAdultos",Integer.toString(numAdultos-1));
-            }else{
-                request.setAttribute("tipo", "Crianças "+numCriancas);
-                this.getServletConfig().getServletContext().setAttribute("numCriancas",Integer.toString(numCriancas-1));
-            }
-            if(numAdultos>0||numCriancas>0){
-                RequestDispatcher view = request.getRequestDispatcher("Escolha de Assento.jsp");
-                view.forward(request, response);
-            }else{
-                RequestDispatcher view = request.getRequestDispatcher("Pagamento.jsp");
-                view.forward(request, response);
-            }            
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nery/Documents/GitHub/Trabalho-DW/AA_Airlines/web/Escolha%20de%20Voo.jsp</file>
-            <file>file:/C:/Users/Nery/Documents/GitHub/Trabalho-DW/AA_Airlines/web/CartaoEmbarque.jsp</file>
-            <file>file:/C:/Users/Nery/Documents/GitHub/Trabalho-DW/AA_Airlines/web/checkin.html</file>
-            <file>file:/C:/Users/Nery/Documents/GitHub/Trabalho-DW/AA_Airlines/web/MudaAssento.jsp</file>
-            <file>file:/C:/Users/Nery/Documents/GitHub/Trabalho-DW/AA_Airlines/src/java/Servlets/BuscaServlet.java</file>
-            <file>file:/C:/Users/Nery/Documents/GitHub/Trabalho-DW/AA_Airlines/src/java/Servlets/MudaAssentoServlet.java</file>
-            <file>file:/C:/Users/Nery/Documents/GitHub/Trabalho-DW/AA_Airlines/web/index.jsp</file>
-            <file>file:/C:/Users/Nery/Documents/GitHub/Trabalho-DW/AA_Airlines/web/voosUsuario.jsp</file>
+            <file>file:/C:/Users/Thadeu%20Jose/Documents/GitHub/Trabalho-DW/AA_Airlines/web/Cartao.jsp</file>
+            <file>file:/C:/Users/Thadeu%20Jose/Documents/GitHub/Trabalho-DW/AA_Airlines/src/java/Servlets/EscAssentoServlet.java</file>
+            <file>file:/C:/Users/Thadeu%20Jose/Documents/GitHub/Trabalho-DW/AA_Airlines/web/Escolha%20de%20Assento.jsp</file>
+            <file>file:/C:/Users/Thadeu%20Jose/Documents/GitHub/Trabalho-DW/AA_Airlines/src/java/Servlets/Cartao.java</file>
+            <file>file:/C:/Users/Thadeu%20Jose/Documents/GitHub/Trabalho-DW/AA_Airlines/src/java/Servlets/PrecoTotal.java</file>
         </group>
     </open-files>
 </project-private>
