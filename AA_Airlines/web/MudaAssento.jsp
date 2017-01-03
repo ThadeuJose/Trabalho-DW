@@ -18,9 +18,10 @@
             ArrayList<Passageiros> listaPas = (ArrayList<Passageiros>) request.getSession().getAttribute("listaPassageiros");
             ArrayList<String> assentosIda = (ArrayList<String>) request.getSession().getAttribute("assentosIda");
             ArrayList<String> assentosVolta = (ArrayList<String>) request.getSession().getAttribute("assentosVolta");
-            ArrayList<Integer> listAss = (ArrayList<Integer>) request.getSession().getAttribute("listAss");
+            ArrayList<String> naoOcupadosIda = (ArrayList<String>) request.getSession().getAttribute("naoOcupadosIda");
+            ArrayList<String> naoOcupadosVolta = (ArrayList<String>) request.getSession().getAttribute("naoOcupadosVolta");
         %>
-        <form method="get" id="modAssento" action="MudaAssento">
+        <form method="get" id="modAssento" action="MudaAssentoServlet">
             Voo de Ida:<br> 
             Numero do Voo: <%= request.getSession().getAttribute("vooIdaCheckin") %><br> 
             <%= request.getSession().getAttribute("aerosIdaCheck") %><br> 
@@ -29,12 +30,14 @@
             <br> 
                 <%for (int i = 0; i < listaPas.size(); i++) {%> 
                     Passageiro: <%=listaPas.get(i).getNmpas()%> <%=listaPas.get(i).getSnpas()%><br>
-                    Assento na Ida:<%=assentosIda.get(i)%><br>
-                    <select id = "modAssIda" name ="modAssIda"> 
-                    <%for (int idx = 0; idx < listAss.size(); idx++){%>
-                    <option value="<%= listAss.get(idx) %>"><%= listAss.get(idx) %> </option>
+                    Assento na Ida:<%=assentosIda.get(i)%><br><br>
+                    Se deseja mudar de assento, escolha um na lista abaixo:<br>
+                    <select id = "modAssIda<%= i%>" name ="modAssIda<%= i%>">
+                    <option value="NAOMUDOU" >Selecione</option>
+                    <%for (int idx = 0; idx < naoOcupadosIda.size(); idx++){%>
+                    <option value="<%= naoOcupadosIda.get(idx) %>"><%= naoOcupadosIda.get(idx) %> </option>
                     <%}%>
-                    </select> 
+                    </select> <br><br>    
                 <%}%>
                 
                 
@@ -48,7 +51,15 @@
                 <%
                 for (int i = 0; i < listaPas.size(); i++) {
                     %> Passageiro: <%=listaPas.get(i).getNmpas()%> <%=listaPas.get(i).getSnpas()%><br><%
-                    %> Assento na Volta:      <%=assentosVolta.get(i)  %><br><%                    
+                    %> Assento na Volta:      <%=assentosVolta.get(i)  %><br><br><%
+                    %>Se deseja mudar de assento, escolha um na lista abaixo:<br>
+                    <select id = "modAssVolta<%= i%>" name ="modAssVolta<%= i%>">
+                    <option value="NAOMUDOU" >Selecione</option>
+                    <%for (int idx = 0; idx < naoOcupadosVolta.size(); idx++){%>
+                    <option value="<%= naoOcupadosVolta.get(idx) %>"><%= naoOcupadosVolta.get(idx) %> </option>
+                    <%}%>
+                    </select> <br><br><br>                                                        <%
+                        
                 }
             %>
                 <input type="submit" value="Continuar" />

@@ -12,7 +12,7 @@
         <title>Preco Total</title>
     </head>
     <body>
-        <form id="PrecoTotal" action="PrecoTotalServlet">
+        <form id="PrecoTotal" action="PrecoTotal">
             Ida:<br>
             De: <%= request.getAttribute("cidadeIdaOri")%><br>
             Para: <%= request.getAttribute("cidadeIdaDest")%><br>
