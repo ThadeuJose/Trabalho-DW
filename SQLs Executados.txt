@@ -45,3 +45,11 @@ insert into assentos values('101', '5', '99', '1', 'B6');
 insert into assentos values('102', '5', '100', '1', 'B5');
 insert into assentoscomprados values('9999','101','5',75.0);
 insert into assentoscomprados values('9999','102','5', 25.0);
+
+4/1/2017, Paulo:
+insert into assentos values('103', '1', '', '1', 'A1');
+insert into assentos values('104', '1', '', '1', 'C1');
+insert into assentos values('105', '1', '', '1', 'D1');
+insert into assentos values('106', '5', '', '1', 'A2');
+insert into assentos values('107', '5', '', '1', 'C2');
+insert into assentos values('108', '5', '', '1', 'D2');
