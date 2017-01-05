@@ -24,8 +24,8 @@
             Assento:
             <select id="assento<%=i%>" name="assento<%=i%>">
                 <%
-                    ArrayList<Integer> listAss=(ArrayList<Integer>) request.getAttribute("listAss"); 
-                    for (Integer ass: listAss) {   
+                    ArrayList<String> listAss=(ArrayList<String>) request.getAttribute("listAss"); 
+                    for (String ass: listAss) {   
                 %>
                 <option value="<%=ass%>"><%=ass%></option>
                 <%}%>                

@@ -1,7 +1,7 @@
-Tue Jan 03 20:01:01 BRST 2017 : Apache Derby Servidor de Rede - 10.10.1.3 - (1557168) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+Thu Jan 05 08:18:51 BRST 2017 : Apache Derby Servidor de Rede - 10.10.1.3 - (1557168) iniciado e pronto para aceitar conexões na porta 1527 em {3}
 ----------------------------------------------------------------
-Tue Jan 03 20:05:18 BRST 2017:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.1.3 - (1557168): instância a816c00e-0159-6659-873f-ffffb5349638
+Thu Jan 05 08:18:55 BRST 2017:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.1.3 - (1557168): instância a816c00e-0159-6e23-6497-ffffb5349638
 no diretório de banco de dados C:\Users\Thadeu Jose\Documents\GitHub\Trabalho-DW\Database\aadb 
 
 java.vendor=Oracle Corporation

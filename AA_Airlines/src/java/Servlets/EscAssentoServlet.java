@@ -43,9 +43,9 @@ public class EscAssentoServlet extends HttpServlet {
         int numAdultos = Integer.parseInt((String)this.getServletConfig().getServletContext().getAttribute("numAdultos"));
         int numCriancas = Integer.parseInt((String)this.getServletConfig().getServletContext().getAttribute("numCriancas"));
                 
-        String idvooIda = (String)this.getServletConfig().getServletContext().getAttribute("idvooIda");
-        String idvooVolta = (String)this.getServletConfig().getServletContext().getAttribute("idvooVolta");
-        String idclasse = (String)this.getServletConfig().getServletContext().getAttribute("classe");
+        String idvooIda = this.getServletConfig().getServletContext().getAttribute("idVooIda").toString();
+        String idvooVolta = this.getServletConfig().getServletContext().getAttribute("idVooVolta").toString();
+        String idclasse = this.getServletConfig().getServletContext().getAttribute("classe").toString();
         
         try {
             Connection con;
@@ -53,16 +53,18 @@ public class EscAssentoServlet extends HttpServlet {
             ResultSet rs;
             
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
-            ps = con.prepareStatement("select idass, nmass from assentos where idvoo = ? and idcla = ? and idpas is null");
+            ps = con.prepareStatement("select idass, nmass from assentos where idvoo = ? and idcla = ? and idpas = ''");
 
+            
+            
             ps.setString(1,idvooIda);//cidade de saida
             ps.setString(2,idclasse);//cidade de destino
 
             rs =ps.executeQuery();
 
-            ArrayList<Integer> listAss = new ArrayList<>();
+            ArrayList<String> listAss = new ArrayList<>();
             while(rs.next()){
-                listAss.add(Integer.parseInt(rs.getString("nmass")));
+                listAss.add(rs.getString("nmass"));
             }            
             request.setAttribute("listAss", listAss);
             

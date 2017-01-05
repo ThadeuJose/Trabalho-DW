@@ -37,7 +37,7 @@ public class PrecoTotal extends HttpServlet {
         String vooIda = request.getParameter("vooIda");
         String[] listVooIda = vooIda.split("/");
     
-        this.getServletConfig().getServletContext().setAttribute("idVooIda",Float.parseFloat(listVooIda[0])); // add to application context
+        this.getServletConfig().getServletContext().setAttribute("idVooIda",listVooIda[0]); // add to application context
             
         request.setAttribute("cidadeIdaOri",listVooIda[1]);
         request.setAttribute("cidadeIdaDest",listVooIda[4]);
@@ -47,7 +47,7 @@ public class PrecoTotal extends HttpServlet {
         String vooVolta = request.getParameter("vooVolta");
         String[] listVooVolta = vooVolta.split("/");
         
-        this.getServletConfig().getServletContext().setAttribute("idVooVolta",Float.parseFloat(listVooVolta[0])); // add to application context
+        this.getServletConfig().getServletContext().setAttribute("idVooVolta",listVooVolta[0]); // add to application context
         
         request.setAttribute("cidadeVoltaOri",listVooVolta[1]);
         request.setAttribute("cidadeVoltaDest",listVooVolta[4]);
