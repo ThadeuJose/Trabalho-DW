@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import ClassesHib.Assentos;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -54,22 +55,22 @@ public class EscAssentoServlet extends HttpServlet {
             
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
             ps = con.prepareStatement("select idass, nmass from assentos where idvoo = ? and idcla = ? and idpas = ''");
-
-            
             
             ps.setString(1,idvooIda);//cidade de saida
             ps.setString(2,idclasse);//cidade de destino
 
             rs =ps.executeQuery();
 
-            ArrayList<String> listAss = new ArrayList<>();
+            ArrayList<Assentos> listAss = new ArrayList<>();
             while(rs.next()){
-                listAss.add(rs.getString("nmass"));
+                Assentos a = new Assentos();
+                a.setIdass(rs.getString("idass"));
+                a.setNmass(rs.getString("nmass"));
+                listAss.add(a);
             }            
             request.setAttribute("listAss", listAss);
             
             request.setAttribute("totalAss",numAdultos+numCriancas);
-            
             
             RequestDispatcher view = request.getRequestDispatcher("Escolha de Assento.jsp");
             view.forward(request, response);

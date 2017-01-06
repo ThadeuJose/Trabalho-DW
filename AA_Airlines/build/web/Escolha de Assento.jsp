@@ -4,6 +4,7 @@
     Author     : Thadeu Jose
 --%>
 
+<%@page import="ClassesHib.Assentos"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,16 +19,18 @@
             <%for (int i = 0; i < (Integer)request.getAttribute("totalAss"); i++) {%>            
             Nome: <input type="text" id="nome<%=i%>" name="nome<%=i%>"/><br>
             Sobrenome: <input type="text" id="sobrenome<%=i%>" name="sobrenome<%=i%>"/><br>
-            Sexo: <input type="text" id="sexo<%=i%>" name="sexo<%=i%>"/><br>
+            Telefone: <input type="text" id="telefone<%=i%>" name="telefone<%=i%>"/><br>
+            Endereço: <input type="text" id="endereco<%=i%>" name="endereco<%=i%>"/><br>
+            Identidade: <input type="text" id="identidade<%=i%>" name="identidade<%=i%>"/><br>
             CPF:<input type="text" id="cpf<%=i%>" name="cpf<%=i%>"/><br>
             Passaporte:<input type="text" id="passaporte<%=i%>" name="passaporte<%=i%>"/><br>
             Assento:
             <select id="assento<%=i%>" name="assento<%=i%>">
                 <%
-                    ArrayList<String> listAss=(ArrayList<String>) request.getAttribute("listAss"); 
-                    for (String ass: listAss) {   
+                    ArrayList<Assentos> listAss=(ArrayList<Assentos>) request.getAttribute("listAss"); 
+                    for (Assentos ass: listAss) {   
                 %>
-                <option value="<%=ass%>"><%=ass%></option>
+                <option value="<%=ass.getIdass()%>"><%=ass.getNmass()%></option>
                 <%}%>                
             </select> 
             <br><br>

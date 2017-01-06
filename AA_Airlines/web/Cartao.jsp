@@ -13,7 +13,8 @@
     </head>
     <body>        
         <form>
-            Seu codigo de embarque e: <%= request.getAttribute("totalAss")%>            
+            Seu codigo de embarque é: <%= request.getAttribute("codRes")%>
+            <input type="submit" value="Voltar" formaction="index.jsp"/>
         </form>
     </body>
 </html>
