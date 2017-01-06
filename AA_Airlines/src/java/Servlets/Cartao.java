@@ -83,7 +83,7 @@ public class Cartao extends HttpServlet {
 
                 //Insert
                 con = DriverManager.getConnection("jdbc:derby://localhost:1527/aadb", "root", "root");
-                ps = con.prepareStatement("insert into passageiros values (?,?,?,?,?,?,?,?,?)");
+                ps = con.prepareStatement("insert into passageiros values (?,?,?,?,?,?,?,?,?,?)");
                 
 
                 ps.setString(1,Integer.toString(idpas));
@@ -95,6 +95,7 @@ public class Cartao extends HttpServlet {
                 ps.setInt(7,Integer.parseInt(request.getParameter("identidade"+i)));
                 ps.setString(8,request.getParameter("cpf"+i));
                 ps.setString(9,request.getParameter("passaporte"+i));
+                ps.setString(10,"0");
                 
                 ps.executeUpdate();
                 
@@ -138,7 +139,7 @@ public class Cartao extends HttpServlet {
             rs.next();
             
             //Retornar o novo idreserva
-            request.setAttribute("codRes",rs.getInt("idReservas") );
+            request.setAttribute("codRes",rs.getInt("IDRES") );
             RequestDispatcher view = request.getRequestDispatcher("Cartao.jsp");
             view.forward(request, response);            
             
